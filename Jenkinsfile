@@ -4,26 +4,30 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
+                // Checkout source code from version control (e.g., Git)
                 git 'https://github.com/GourabGITHUB/temp.git'
             }
         }
 
-        stage('Build') {
+        stage('Install Dependencies') {
             steps {
-                // You can add build steps here (not needed for static HTML)
+                // Install Node.js dependencies using npm
+                bat 'npm install'
             }
         }
 
-        stage('Test') {
+        stage('Build and Test') {
             steps {
-                // You can add test steps here (not needed for static HTML)
+                // Run build and test scripts (adjust as per your project)
+                bat 'npm run build'
+                bat 'npm test'
             }
         }
 
         stage('Deploy') {
             steps {
-                sh 'npm install' // Install dependencies (optional, only if using Node.js server)
-                sh 'node temp.js &' // Start the Node.js server (optional, only if using Node.js server)
+                // Perform deployment steps (e.g., start Node.js server)
+                bat 'node temp.js'
             }
         }
     }
