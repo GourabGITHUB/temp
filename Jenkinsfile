@@ -9,15 +9,11 @@ pipeline {
             }
         }
         
-        stage('Install Dependencies') {
+        stage('Build and Deploy') {
             steps {
                 // Install Node.js dependencies
                 bat 'npm install'
-            }
-        }
-
-        stage('Build and Deploy') {
-            steps {
+                
                 // Build or perform any necessary tasks before deployment
                 
                 // Deploy the HTML page to the Node.js server
