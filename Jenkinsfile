@@ -1,32 +1,27 @@
 pipeline {
     agent any
-
+    
     stages {
         stage('Checkout') {
             steps {
-                // Checkout source code from version control (e.g., Git)
-                git 'https://github.com/GourabGITHUB/temp.git'
+                // Checkout the source code from the repository
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://github.com/GourabGITHUB/temp.git']]])
             }
         }
-
+        
         stage('Install Dependencies') {
             steps {
-                // Install Node.js dependencies using npm
+                // Install Node.js dependencies
                 bat 'npm install'
             }
         }
 
-        stage('Build and Test') {
+        stage('Build and Deploy') {
             steps {
-                // Run build and test scripts (adjust as per your project)
-                bat 'npm run build'
-                bat 'npm test'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                // Perform deployment steps (e.g., start Node.js server)
+                // Build or perform any necessary tasks before deployment
+                
+                // Deploy the HTML page to the Node.js server
+                bat 'copy temp.html dist\\'
                 bat 'node temp.js'
             }
         }
