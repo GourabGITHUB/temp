@@ -4,8 +4,8 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Checkout the source code from the repository
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/GourabGITHUB/temp.git']]])
+                // Specify the repository URL
+                git 'https://github.com/GourabGITHUB/temp.git'
             }
         }
         
