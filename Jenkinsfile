@@ -9,17 +9,36 @@ pipeline {
             }
         }
         
-        stage('Build and Deploy') {
+        stage('Build') {
             steps {
-                // Install Node.js dependencies
-                bat 'npm install'
-                
-                // Build or perform any necessary tasks before deployment
-                
-                // Deploy the HTML page to the Node.js server
-                bat 'copy temp.html dist\\'
-                bat 'node temp.js'
+                // Execute build commands here
+                // Example: sh 'mvn clean install'
             }
+        }
+        
+        stage('Test') {
+            steps {
+                // Execute test commands here
+                   echo "this is the test stage"
+            }
+        }
+        
+        stage('Deploy') {
+            steps {
+                // Execute deployment commands here
+                   echo "this is the deploy stage"
+            }
+        }
+    }
+    
+    post {
+        success {
+            // Actions to be taken if the pipeline is successful
+            echo 'Build and deployment successful!'
+        }
+        failure {
+            // Actions to be taken if the pipeline fails
+            echo 'Build or deployment failed!'
         }
     }
 }
