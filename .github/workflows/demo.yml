@@ -5,7 +5,6 @@ jobs:                         # Container for all jobs
   build:             # A specific Job ID
     runs-on: ubuntu-latest    # The Runner (Environment)
     steps:                    # List of Steps in this job
-      - name: Hello World     # Step 1
       - run: echo "Compiling the application!"
   deploy:
     runs-on: ubuntu-latest
